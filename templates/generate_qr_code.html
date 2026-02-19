@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Generate QR{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+  <div class="qr-card">
+    <h3 class="text-center mb-4">Generate Your Digital Menu QR</h3>
+
+    <form action="{% url 'generate_qr_code' %}" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary w-100">
+          Generate QR Code
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

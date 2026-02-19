@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}QR Result{% endblock %}
+
+{% block content %}
+<div class="col-md-6 text-center">
+  <div class="qr-card">
+
+    <h3 class="mb-3">{{ res_name }}</h3>
+
+    <img src="{{ qr_url }}" 
+         class="img-fluid mb-3"
+         style="border:5px solid black; border-radius:10px;">
+
+    <!-- Download Button -->
+    <a href="{{ qr_url }}" 
+       download="{{ file_name }}" 
+       class="btn btn-primary w-100 mb-3"
+       onclick="showPopup()">
+       Download QR Code
+    </a>
+
+    <small class="text-muted">
+      Thank you for using our QR Code Generator Tool
+    </small>
+
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="downloadModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+
+      <h4 class="mb-3">🎉 QR Downloaded Successfully!</h4>
+
+      <p>Make another QR and meet you soon 👋</p>
+
+      <a href="{% url 'generate_qr_code' %}" 
+         class="btn btn-primary mt-3">
+         Generate New QR
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function showPopup() {
+  setTimeout(function() {
+    var myModal = new bootstrap.Modal(document.getElementById('downloadModal'));
+    myModal.show();
+  }, 500); // small delay after download
+}
+</script>
+
+{% endblock %}
